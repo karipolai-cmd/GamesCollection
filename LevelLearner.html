@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Educational Web Games</title>
+<style>
+  :root{
+    --bg:#f0f2f5; --card:#fff; --muted:#6b7280; --text:#111827; --brand:#2563eb;
+    --ok:#16a34a; --warn:#f59e0b; --danger:#ef4444; --shadow:0 10px 25px rgba(0,0,0,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
+    background: linear-gradient(135deg,#eef2f7,#dfe7f1); color:var(--text);
+  }
+  .wrap{max-width:1100px; margin:40px auto; padding:0 16px;}
+  header{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px;
+  }
+  .title{
+    display:flex; align-items:center; gap:12px;
+  }
+  .logo{
+    width:44px; height:44px; display:grid; place-items:center;
+    background:var(--brand); color:#fff; border-radius:12px; box-shadow:var(--shadow);
+    font-size:22px;
+  }
+  h1{font-size:clamp(20px,4vw,28px); margin:0}
+  .controls{
+    display:grid; grid-template-columns: repeat(4, minmax(0,1fr)) 140px;
+    gap:10px; position:sticky; top:0; background:transparent; z-index:5; padding-top:8px;
+  }
+  .control, .btn{
+    border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px; background:#fff;
+    outline:none; font-size:14px;
+  }
+  .btn{cursor:pointer}
+  .btn.brand{background:var(--brand); border-color:var(--brand); color:#fff}
+  .btn.ghost{background:#fff}
+  .btn:disabled{opacity:.6; cursor:not-allowed}
+  .toolbar{
+    display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 18px;
+  }
+  .badge{
+    font-size:12px; padding:4px 8px; border-radius:999px; background:#eef2ff; color:#3730a3;
+  }
+  .grid{
+    display:grid; gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .card{
+    background:var(--card); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:12px; border:1px solid #eef2f7;
+    transition: transform .12s ease;
+  }
+  .card:hover{ transform: translateY(-2px); }
+  .card-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .label{ font-size:16px; font-weight:700; }
+  .subtle{ color:var(--muted); font-size:12px; }
+  .chip{ font-size:12px; padding:4px 8px; border-radius:8px; background:#f3f4f6; }
+  .chip.ok{ background:#ecfdf5; color:#065f46;}
+  .chip.med{ background:#fff7ed; color:#9a3412;}
+  .chip.hard{ background:#fef2f2; color:#991b1b;}
+  .card-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .small{ font-size:13px; padding:8px 10px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; cursor:pointer;}
+  .small.primary{ background:var(--brand); color:#fff; border-color:var(--brand);}
+  .small.star{ background:#fffaf0; border-color:#fde68a;}
+  .muted{ color:var(--muted); }
+  .sr{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .panel{
+    background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px 12px; box-shadow:var(--shadow);
+    display:flex; gap:10px; align-items:center; justify-content:space-between;
+  }
+  .left-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .right-row{ display:flex; gap:8px; align-items:center;}
+  .spinner{
+    display:none; width:18px; height:18px; border:3px solid #e5e7eb; border-top-color:var(--brand); border-radius:50%;
+    animation: spin 1s linear infinite;
+  }
+  .spinner.show{ display:inline-block; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  footer{ text-align:center; color:var(--muted); font-size:12px; margin:24px 0; }
+  @media (max-width:840px){
+    .controls{ grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <div class="logo">🎮</div>
+        <div>
+          <h1>Educational Web Games</h1>
+          <div class="subtle">Filter by subject, topic, difficulty — open, favorite, or have it read aloud.</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="left-row">
+          <button id="muteBtn" class="small" title="Mute / Unmute">🔊 Mute</button>
+          <button id="repeatBtn" class="small" title="Repeat last speech">🔁 Repeat</button>
+          <span id="loadingDot" class="spinner" aria-hidden="true"></span>
+        </div>
+        <div class="right-row">
+          <span class="badge" id="countBadge">0 games</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="controls">
+      <select id="subjectSelect" class="control">
+        <option value="">All Subjects</option>
+      </select>
+      <select id="topicSelect" class="control">
+        <option value="">All Topics</option>
+      </select>
+      <select id="difficultySelect" class="control">
+        <option value="">All Difficulties</option>
+      </select>
+      <input id="searchInput" class="control" type="search" placeholder="Search by name…" />
+      <button id="clearBtn" class="btn ghost">Clear Filters</button>
+    </div>
+
+    <div class="toolbar">
+      <label><input type="checkbox" id="favoritesOnly" /> Show favorites only</label>
+    </div>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <footer>Made for teachers • Favorites stored locally • Uses public JSON</footer>
+  </div>
+
+<script>
+  // ---- Config ----
+  const DATA_URL = "https://raw.githubusercontent.com/karipolai-cmd/GamesCollection/refs/heads/main/Games.json";
+
+  // ---- State ----
+  let data = {};                   // original JSON
+  let index = [];                  // flat array of {subject, topic, label, url, difficulty}
+  let favorites = new Set(JSON.parse(localStorage.getItem("eduGameFavs") || "[]"));
+  let muted = false;
+  let lastSpeechText = "";
+
+  // ---- Elements ----
+  const subjectEl   = document.getElementById("subjectSelect");
+  const topicEl     = document.getElementById("topicSelect");
+  const diffEl      = document.getElementById("difficultySelect");
+  const searchEl    = document.getElementById("searchInput");
+  const gridEl      = document.getElementById("grid");
+  const clearBtn    = document.getElementById("clearBtn");
+  const favOnlyEl   = document.getElementById("favoritesOnly");
+  const countBadge  = document.getElementById("countBadge");
+  const muteBtn     = document.getElementById("muteBtn");
+  const repeatBtn   = document.getElementById("repeatBtn");
+  const loadingDot  = document.getElementById("loadingDot");
+
+  // ---- Utilities ----
+  const DIFF_CLASS = d => {
+    const x = (d||"").toLowerCase();
+    if (x.startsWith("begin")) return "ok";
+    if (x.startsWith("inter")) return "med";
+    if (x.startsWith("adv"))   return "hard";
+    return "";
+  };
+
+  function speak(text){
+    if (!text || muted) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    // A lightweight language guess: if UI needs i18n later, set explicit voices here.
+    u.lang = navigator.language || "en-US";
+    window.speechSynthesis.speak(u);
+  }
+
+  function setLoading(on){ loadingDot.classList.toggle("show", !!on); }
+
+  function saveFavorites(){
+    localStorage.setItem("eduGameFavs", JSON.stringify(Array.from(favorites)));
+  }
+
+  function buildIndex(){
+    index = [];
+    Object.entries(data).forEach(([subject, topics])=>{
+      Object.entries(topics).forEach(([topic, games])=>{
+        games.forEach(g => index.push({ subject, topic, label: g.label, url: g.url, difficulty: g.difficulty || "" }));
+      });
+    });
+  }
+
+  function unique(arr){ return Array.from(new Set(arr)).sort((a,b)=>a.localeCompare(b)); }
+
+  function populateFilters(){
+    // Subjects
+    const subjects = unique(Object.keys(data));
+    subjectEl.innerHTML = `<option value="">All Subjects</option>` + subjects.map(s=>`<option>${s}</option>`).join("");
+
+    // Topics & difficulties depend on subject (or all)
+    repopulateDependentFilters();
+  }
+
+  function repopulateDependentFilters(){
+    const chosenSubject = subjectEl.value;
+    const topics = unique(
+      index
+        .filter(r => !chosenSubject || r.subject === chosenSubject)
+        .map(r => r.topic)
+    );
+    topicEl.innerHTML = `<option value="">All Topics</option>` + topics.map(t=>`<option>${t}</option>`).join("");
+
+    const diffs = unique(index.map(r => r.difficulty).filter(Boolean));
+    diffEl.innerHTML = `<option value="">All Difficulties</option>` + diffs.map(d=>`<option>${d}</option>`).join("");
+  }
+
+  function currentFilters(){
+    return {
+      subject: subjectEl.value,
+      topic: topicEl.value,
+      difficulty: diffEl.value,
+      query: (searchEl.value || "").trim().toLowerCase(),
+      favoritesOnly: favOnlyEl.checked
+    };
+  }
+
+  function applyFilters(){
+    const f = currentFilters();
+    let list = index.slice();
+    if (f.subject)   list = list.filter(r => r.subject === f.subject);
+    if (f.topic)     list = list.filter(r => r.topic === f.topic);
+    if (f.difficulty)list = list.filter(r => (r.difficulty||"") === f.difficulty);
+    if (f.query)     list = list.filter(r => r.label.toLowerCase().includes(f.query) || r.subject.toLowerCase().includes(f.query) || r.topic.toLowerCase().includes(f.query));
+    if (f.favoritesOnly) list = list.filter(r => favorites.has(r.url));
+
+    render(list);
+  }
+
+  function render(list){
+    countBadge.textContent = `${list.length} game${list.length===1?"":"s"}`;
+    if (!list.length){
+      gridEl.innerHTML = `<div class="card"><div class="label">No games match these filters.</div><div class="subtle">Try clearing filters or changing your search.</div></div>`;
+      return;
+    }
+    gridEl.innerHTML = list.map(item=>{
+      const fav = favorites.has(item.url);
+      const diffClass = DIFF_CLASS(item.difficulty);
+      const diffChip = item.difficulty ? `<span class="chip ${diffClass}">${item.difficulty}</span>` : "";
+      const emoji = subjectEmoji(item.subject);
+      return `
+      <article class="card" data-url="${encodeURIComponent(item.url)}">
+        <div class="card-head">
+          <div>
+            <div class="label">${emoji} ${escapeHtml(item.label)}</div>
+            <div class="subtle">${escapeHtml(item.subject)} • ${escapeHtml(item.topic)}</div>
+          </div>
+          ${diffChip}
+        </div>
+        <div class="card-actions">
+          <a class="small primary" href="${item.url}" target="_blank" rel="noopener">Open</a>
+          <button class="small star" data-action="fav">${fav?"⭐ Favorited":"☆ Favorite"}</button>
+          <button class="small" data-action="read">🔊 Read</button>
+        </div>
+      </article>`;
+    }).join("");
+
+    // Wire per-card buttons
+    gridEl.querySelectorAll("button[data-action='fav']").forEach(btn=>{
+      btn.addEventListener("click", e=>{
+        const card = e.currentTarget.closest(".card");
+        const url = decodeURIComponent(card.dataset.url);
+        if (favorites.has(url)) favorites.delete(url); else favorites.add(url);
+        saveFavorites();
+        applyFilters(); // re-render to reflect state
+      });
+    });
+    gridEl.querySelectorAll("button[data-action='read']").forEach(btn=>{
+      btn.addEventListener("click", e=>{
+        const card = e.currentTarget.closest(".card");
+        const head = card.querySelector(".label").textContent.trim();
+        const sub  = card.querySelector(".subtle").textContent.trim();
+        const diff = card.querySelector(".chip")?.textContent.trim() || "";
+        const text = `${head}. ${sub}${diff?`. Difficulty: ${diff}.`:""}`;
+        lastSpeechText = text;
+        speak(text);
+      });
+    });
+  }
+
+  function subjectEmoji(subject){
+    const map = {
+      "Math":"➗", "Geography":"🗺️", "History":"🏛️", "English":"📚",
+      "Science":"🔬", "Computer Science":"💻", "Art":"🎨"
+    };
+    return map[subject] || "🎮";
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---- Events ----
+  subjectEl.addEventListener("change", ()=>{ repopulateDependentFilters(); applyFilters(); });
+  topicEl.addEventListener("change", applyFilters);
+  diffEl.addEventListener("change", applyFilters);
+  searchEl.addEventListener("input", ()=>{ applyFilters(); });
+  favOnlyEl.addEventListener("change", applyFilters);
+  clearBtn.addEventListener("click", ()=>{
+    subjectEl.value=""; topicEl.value=""; diffEl.value=""; searchEl.value=""; favOnlyEl.checked=false;
+    repopulateDependentFilters(); applyFilters();
+  });
+
+  muteBtn.addEventListener("click", ()=>{
+    muted = !muted;
+    if (muted) window.speechSynthesis.cancel(); // stop immediately
+    muteBtn.textContent = muted ? "🔇 Unmute" : "🔊 Mute";
+  });
+
+  repeatBtn.addEventListener("click", ()=>{
+    if (!muted && lastSpeechText) speak(lastSpeechText);
+  });
+
+  // ---- Init ----
+  (async function init(){
+    try{
+      setLoading(true);
+      const res = await fetch(DATA_URL, {cache:"no-store"});
+      data = await res.json();
+      buildIndex();
+      populateFilters();
+      applyFilters();
+    }catch(err){
+      console.error(err);
+      gridEl.innerHTML = `<div class="card"><div class="label">Failed to load data</div><div class="subtle">Check your JSON URL and CORS.</div></div>`;
+    }finally{
+      setLoading(false);
+    }
+  })();
+</script>
+</body>
+</html>
