@@ -1,0 +1,373 @@
+{
+  "Math": {
+    "Algebra": [
+      {
+        "label": "Prodigy Math",
+        "url": "https://www.prodigygame.com",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "DragonBox Algebra",
+        "url": "https://dragonbox.com/products/dragonbox-algebra-5-12",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "Math Playground",
+        "url": "https://www.mathplayground.com",
+        "difficulty": "Any"
+      }
+    ],
+    "Geometry": [
+      {
+        "label": "Khan Academy Geometry",
+        "url": "https://www.khanacademy.org/math/geometry",
+        "difficulty": "Any"
+      },
+      {
+        "label": "CoolMath Geometry Games",
+        "url": "https://www.coolmathgames.com/1-geometry",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "GeoGebra",
+        "url": "https://www.geogebra.org",
+        "difficulty": "Advanced"
+      }
+    ],
+    "Fractions": [
+      {
+        "label": "SplashLearn Fractions",
+        "url": "https://www.splashlearn.com/fraction-games",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Fraction Games at MathGames",
+        "url": "https://www.mathgames.com/fraction-games",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "BBC Bitesize Fractions",
+        "url": "https://www.bbc.co.uk/bitesize/topics/z3rbg82",
+        "difficulty": "Any"
+      }
+    ]
+  },
+  "Geography": {
+    "World Maps": [
+      {
+        "label": "Seterra",
+        "url": "https://www.seterra.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Lizard Point Geography",
+        "url": "https://lizardpoint.com/geography",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Sheppard Software Geography",
+        "url": "https://www.sheppardsoftware.com/Geography.htm",
+        "difficulty": "Any"
+      }
+    ],
+    "Capitals": [
+      {
+        "label": "World Capitals Quiz",
+        "url": "https://world-geography-games.com/capitals.html",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "GeoGuessr",
+        "url": "https://www.geoguessr.com",
+        "difficulty": "Advanced"
+      },
+      {
+        "label": "Purpose Games - Capitals",
+        "url": "https://www.purposegames.com/game/world-capitals-quiz",
+        "difficulty": "Any"
+      }
+    ],
+    "Flags": [
+      {
+        "label": "Flag Quiz",
+        "url": "https://www.world-geography-games.com/en/flags.html",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Sporcle Flags of the World",
+        "url": "https://www.sporcle.com/games/g/worldflags",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "Flagmania",
+        "url": "https://flagmania.net",
+        "difficulty": "Any"
+      }
+    ]
+  },
+  "History": {
+    "World War II": [
+      {
+        "label": "WWII Quiz - Purpose Games",
+        "url": "https://www.purposegames.com/game/world-war-ii-quiz",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "BBC Bitesize WWII",
+        "url": "https://www.bbc.co.uk/bitesize/topics/zk94jxs",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Horrible Histories WWII",
+        "url": "https://www.bbc.co.uk/cbbc/shows/horrible-histories",
+        "difficulty": "Any"
+      }
+    ],
+    "Ancient Egypt": [
+      {
+        "label": "Ancient Egypt Quiz",
+        "url": "https://www.historyforkids.net/ancient-egypt.html",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "National Geographic Kids Egypt",
+        "url": "https://kids.nationalgeographic.com/history/article/ancient-egypt",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Egyptian Mummy Maker",
+        "url": "https://www.bbc.co.uk/history/interactive/games/mummy_maker/index_embed.shtml",
+        "difficulty": "Intermediate"
+      }
+    ],
+    "American Revolution": [
+      {
+        "label": "Mission US: For Crown or Colony?",
+        "url": "https://www.mission-us.org",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "American Revolution Game",
+        "url": "https://www.ducksters.com/games/american_revolution_game.php",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "History Channel Revolution Quiz",
+        "url": "https://www.history.com/topics/american-revolution/american-revolution-history",
+        "difficulty": "Any"
+      }
+    ]
+  },
+  "English": {
+    "Vocabulary": [
+      {
+        "label": "Vocabulary.com",
+        "url": "https://www.vocabulary.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Freerice Vocabulary",
+        "url": "https://freerice.com/categories/english-vocabulary",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Wordwall",
+        "url": "https://wordwall.net",
+        "difficulty": "Any"
+      }
+    ],
+    "Grammar": [
+      {
+        "label": "Grammar Bytes",
+        "url": "https://chompchomp.com/exercises.htm",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Kahoot Grammar Games",
+        "url": "https://kahoot.com/schools/",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Quill Grammar",
+        "url": "https://www.quill.org",
+        "difficulty": "Intermediate"
+      }
+    ],
+    "Spelling": [
+      {
+        "label": "Spelling City",
+        "url": "https://www.spellingcity.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "BBC Spell It",
+        "url": "https://www.bbc.co.uk/bitesize/topics/zt62mnb",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Spellzone",
+        "url": "https://www.spellzone.com",
+        "difficulty": "Intermediate"
+      }
+    ]
+  },
+  "Science": {
+    "Biology": [
+      {
+        "label": "BioMan Biology",
+        "url": "https://www.biomanbio.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Sheppard Software Biology",
+        "url": "https://www.sheppardsoftware.com/science.htm",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Ask A Biologist",
+        "url": "https://askabiologist.asu.edu",
+        "difficulty": "Any"
+      }
+    ],
+    "Physics": [
+      {
+        "label": "PhET Physics Simulations",
+        "url": "https://phet.colorado.edu/en/simulations/category/physics",
+        "difficulty": "Any"
+      },
+      {
+        "label": "PhysicsGames.net",
+        "url": "https://www.physicsgames.net",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Minute Physics Games",
+        "url": "https://www.learn4good.com/games/physics.htm",
+        "difficulty": "Intermediate"
+      }
+    ],
+    "Chemistry": [
+      {
+        "label": "ChemCollective",
+        "url": "https://chemcollective.org/activities",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "Molecular Workbench",
+        "url": "https://mw.concord.org/modeler/",
+        "difficulty": "Advanced"
+      },
+      {
+        "label": "Sheppard Software Chemistry",
+        "url": "https://www.sheppardsoftware.com/chemistry.htm",
+        "difficulty": "Beginner"
+      }
+    ]
+  },
+  "Computer Science": {
+    "Programming": [
+      {
+        "label": "Scratch",
+        "url": "https://scratch.mit.edu",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Code.org",
+        "url": "https://code.org",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Repl.it",
+        "url": "https://replit.com",
+        "difficulty": "Intermediate"
+      }
+    ],
+    "Cybersecurity": [
+      {
+        "label": "CyberStart",
+        "url": "https://www.cyberstart.com",
+        "difficulty": "Advanced"
+      },
+      {
+        "label": "Interland",
+        "url": "https://beinternetawesome.withgoogle.com/en_us/interland",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Cybersecurity Lab",
+        "url": "https://www.pbs.org/wgbh/nova/labs/lab/cyber/",
+        "difficulty": "Intermediate"
+      }
+    ],
+    "Logic": [
+      {
+        "label": "LightBot",
+        "url": "https://lightbot.com",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "CodeCombat",
+        "url": "https://codecombat.com",
+        "difficulty": "Intermediate"
+      },
+      {
+        "label": "Codingame",
+        "url": "https://www.codingame.com",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+  "Art": {
+    "Drawing": [
+      {
+        "label": "Quick, Draw!",
+        "url": "https://quickdraw.withgoogle.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "AutoDraw",
+        "url": "https://www.autodraw.com",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Kleki",
+        "url": "https://kleki.com",
+        "difficulty": "Any"
+      }
+    ],
+    "Music": [
+      {
+        "label": "Chrome Music Lab",
+        "url": "https://musiclab.chromeexperiments.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Incredibox",
+        "url": "https://www.incredibox.com",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Virtual Piano",
+        "url": "https://virtualpiano.net",
+        "difficulty": "Beginner"
+      }
+    ],
+    "Design": [
+      {
+        "label": "Canva for Education",
+        "url": "https://www.canva.com/education",
+        "difficulty": "Any"
+      },
+      {
+        "label": "Tinkercad",
+        "url": "https://www.tinkercad.com",
+        "difficulty": "Beginner"
+      },
+      {
+        "label": "Piskel",
+        "url": "https://www.piskelapp.com",
+        "difficulty": "Intermediate"
+      }
+    ]
+  }
+}
